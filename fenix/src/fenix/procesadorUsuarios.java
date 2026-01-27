@@ -1,12 +1,29 @@
 package fenix;
 
 import java.util.List;
+
+/**
+ * Clase que se encarga de procesar listas de usuarios.
+ */
 public class procesadorUsuarios {
 
-    private static final int ROL_INVITADO = 2;
-	private static final int ROL_ADMIN = 1;
+    /**
+     * Constructor por defecto de la clase procesadorUsuarios.
+     */
+    public procesadorUsuarios() {
+        // Constructor vacío
+    }
 
-	// Método con 'code smells': largo, números mágicos, malos nombres.
+    private static final int ROL_ADMIN = 1;
+    private static final int ROL_INVITADO = 2;
+    
+    /**
+     * Procesa una lista de cadenas con formato "nombre:rol" y devuelve 
+     * un resumen agrupado.
+     *
+     * @param usuarios Lista de Strings que contienen los datos de usuario.
+     * @return Una cadena formateada con los nombres de Admins e Invitados.
+     */
     public String procesarLista(List<String> usuarios) {
         String admins = "";
         String invitados = "";
@@ -14,29 +31,24 @@ public class procesadorUsuarios {
         for (String usuario : usuarios) {
             String[] parts = usuario.split(":"); // Formato "nombre:rol"
             if (parts.length == 2) {
-                String nombre= parts[0];
+                String nombre = parts[0];
                 int rol = Integer.parseInt(parts[1]);
 
-                // Número Mágico: 1 es Admin
                 if (rol == ROL_ADMIN) {
                     admins += procesarAdmin(nombre);
-                }
-                // Número Mágico: 2 es Invitado
-                else if (rol == ROL_INVITADO) {
+                } else if (rol == ROL_INVITADO) {
                     invitados += procesarInvitado(nombre);
                 }
             }
         }
         return "Admins: " + admins + " | Invitados: " + invitados;
     }
-    //prueba inicial
 
     private String procesarAdmin(String nombre) {
-		return nombre + ",";
+        return nombre + ",";
     }
 
     private String procesarInvitado(String nombre) {
-		return nombre + ",";
-	}
-	}
-
+        return nombre + ",";
+    }
+}
