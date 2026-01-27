@@ -1,0 +1,23 @@
+name: Java JUnit CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Compile and Run Tests
+        run: |
+          mkdir -p bin
+          # Compilamos el código y los tests incluyendo las librerías de JUnit
+          javac -d bin src/fenix/*.java
+          # Ejecutamos los tests (Este comando varía según la versión de JUnit en el servidor)
+          java -cp bin org.junit.runner.RemoteTestRunner  # Ejemplo básico
