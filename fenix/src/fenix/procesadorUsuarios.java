@@ -27,7 +27,7 @@ public class procesadorUsuarios {
     public String procesarLista(List<String> usuarios) {
         String admins = "";
         String invitados = "";
-     // Comentario trivial para activar workfloww
+     // Comentario trivial para activar workflowww
 
         for (String usuario : usuarios) {
             String[] parts = usuario.split(":"); // Formato "nombre:rol"
