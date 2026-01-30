@@ -28,7 +28,7 @@ public class procesadorUsuarios {
         String admins = "";
         String invitados = "";
      // Comentario trivial para activar workflows
-     // Prueba de integración continua
+     // Prueba de integración continuas
         for (String usuario : usuarios) {
             String[] parts = usuario.split(":"); // Formato "nombre:rol"
             if (parts.length == 2) {
