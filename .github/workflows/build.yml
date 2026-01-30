@@ -1,0 +1,30 @@
+name: Java CI con Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1. Descargar codigo
+      uses: actions/checkout@v4
+
+    - name: 2. Configurar Java 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: 3. Diagnostico (Ver donde estan los archivos)
+    # Este paso nos dira en la consola si el pom.xml esta en la raiz o en una carpeta
+      run: ls -R
+
+    - name: 4. Compilar con Maven
+      # Si el pom.xml esta en la raiz, este comando funcionara
+      run: mvn -B clean install
